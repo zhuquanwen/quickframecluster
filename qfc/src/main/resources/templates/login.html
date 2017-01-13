@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>登录</title>
+<link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+<script type="text/javascript" th:src="@{/js/jquery/jquery-3.1.0.min.js}"></script>	
+<script type="text/javascript" th:src="@{/js/jquery/jquery-cookie.js}"></script>	
+<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/plugin/savior/css/style.css}"/>
+
+<script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+<script >
+	
+	
+	
+	//onload = prepareLoginForm;
+</script>
+</head>
+<body
+	style="background-color:#1c77ac; background-image:url(images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+	<div id="mainBody">
+		<div id="cloud1" class=""></div>
+		<div id="cloud2" class=""></div>
+	</div>
+	<div class="logintop">
+		<span>欢迎登录</span>
+		<ul>
+			<li><a href="#">回首页</a>
+			</li>
+			<li><a href="#">帮助</a>
+			</li>
+			<li><a href="#">关于</a>
+			</li>
+			
+		</ul>
+	</div>
+	<div class="loginbody">
+		<span class="systemlogo"></span>
+		<div class="loginbox">
+			<form id="myLoginForm" method="post" action="" th:action="@{${FORM_ACTION}}" onsubmit="return beforeLogin();">
+				<ul>
+					<li><input name="username" type="text" class="loginuser" value=""
+						onclick="JavaScript:this.value=''" />
+					</li>
+					<li style = "margin-bottom:10px;">
+						<input name="password" type="password" class="loginpwd" value=""
+						onclick="JavaScript:this.value=''" />
+					</li>
+					 <li>
+						<input type="hidden" name="lt" id="lt" value="" />
+					</li>
+					<li>
+						<input type="hidden" name="execution" id="execution" value=""/>
+					</li>
+					<!-- <li>
+						<input type="hidden" name="service" id="service" value="http://localhost:8088/base/shiro-cas"/>
+					</li> -->
+					<li >
+						<input type="hidden" name="_eventId" value="submit" />
+					</li> 
+					
+					<li style = "margin-bottom:10px;">
+						<input name="code" type="text" class="logincode" value=""
+						onclick="JavaScript:this.value=''"  id="imageCode"/>
+						 <span >
+						 	<img id="codeValidateImg"  onClick="javascript:flushValidateCode();"/>
+						 </span>
+					</li>
+					
+					<li><input name="submit" type="submit" class="loginbtn" value="登录"/><label>
+						<input id="checkbox" name="" type="checkbox" value="" checked="checked" />记住账号</label>
+							<!-- <label><a href="#">用户注册</a> 
+					</label>-->
+						<span style="color:red;font-size:14px;" id = "errorSpan"></span>
+					</li>
+					
+					
+			</ul>
+			</form>
+			
+		</div>
+	</div>
+	<div class="loginbm">
+		版权所有 2015
+	</div>
+	<input type="hidden" id="CAS_LOGIN_URL" th:value="${CAS_LOGIN_URL}" value="这是cas服务验证地址"/>
+	<input type="hidden" id="LOCAL_LOGIN_URL" th:value="${LOCAL_LOGIN_URL}" value="这是本地登录页面地址"/>
+	<input type="hidden" id="LOGIN_SERVICE_PARAM" th:value="${LOGIN_SERVICE_PARAM}" value="这是service后带的参数"/>
+	
+</body>
+</html>

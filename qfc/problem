@@ -1,0 +1,14 @@
+1.ticket存储入redis时候加一个失效时间   #
+2.测试quart检测session失效的有效性      #
+
+20170111
+1.开始登录生成多个sessionId存入redis
+2.权限存入redis #
+3.siglesignOutFilter的Httpsession存入redis #不做处理
+4.测试服务放入服务器
+5.redis存储ticket加入超时时间 #
+
+20170112
+1.casConfig中配置权限超时时间读不了配置文件 
+2.刷新权限的问题 #
+3.RequestData存入redis #

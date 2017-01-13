@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>测试权限页面</title>
+<link rel="icon" type="image/x-icon" href="/base/favicon.ico"/>
+<script>
+function initRequest()
+{
+    var request = false;
+    if(window.XMLHttpRequest) {         //FireFox
+    request = new XMLHttpRequest();
+    if (request.overrideMimeType) {
+      request.overrideMimeType('text/xml');
+    }
+  }
+  else if (window.ActiveXObject) {    //IE
+    try {
+      request = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+      try {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+      } catch (e) {}
+    }
+  }
+  if (!request) {
+    window.alert("Create request error!");
+    return false;
+  }
+  return request;
+}
+
+var http_request;
+function send(sendUrl,sendData)
+{
+  http_request = initRequest();
+  http_request.onreadystatechange = ajax_call_back;//指定请求返回时的回调函数
+    
+  //get
+  http_request.open("GET", sendUrl,true);
+  http_request.send(sendData);
+  
+  //post
+  //http_request.open("POST", sendUrl, true);
+  //http_request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  //http_request.send(sendData);
+}
+
+function ajax_call_back()
+{
+    //readyState共有5中状态，0未初始化，1已初始化，2发送请求，3开始接收结果，4接收结果完毕。
+    //status服务器响应状态码
+  if (http_request.readyState == 4) {
+    if (http_request.status == 200) {
+      var str = http_request.responseText;
+      alert("返回数据为："+str);
+    }
+    else if(http_request.status == 404){
+      alert("请求资源不存在！");
+    }
+    else {
+      alert("Ajax请求失败，错误状态为："+http_request.status);
+    }
+  }
+}
+window.onload = function(){
+	send("/base/testAjax",null);
+}
+</script>
+</head>
+<body>
+	<span th:text="${info}">进入测试edit</span>
+</body>
+</html>
